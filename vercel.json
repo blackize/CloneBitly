@@ -1,0 +1,35 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "frontend/package.json",
+            "use": "@vercel/next"
+        },
+        {
+            "src": "backend/src/vercel.ts",
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": [
+                    "backend/prisma/schema.prisma"
+                ]
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "backend/src/vercel.ts",
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            }
+        },
+        {
+            "src": "/(w[a-z0-9]{5})",
+            "dest": "backend/src/vercel.ts"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "frontend/$1"
+        }
+    ]
+}

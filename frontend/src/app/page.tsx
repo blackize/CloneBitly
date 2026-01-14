@@ -8,19 +8,21 @@ export default function Home() {
   const [status, setStatus] = useState<"loading" | "online" | "offline">("loading");
   const [shortenedUrl, setShortenedUrl] = useState("");
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
   useEffect(() => {
     // Check backend health
-    fetch("http://localhost:3001")
+    fetch(API_URL)
       .then((res) => (res.ok ? setStatus("online") : setStatus("offline")))
       .catch(() => setStatus("offline"));
-  }, []);
+  }, [API_URL]);
 
   const handleShorten = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!url) return;
 
     try {
-      const response = await fetch("http://localhost:3001/links", {
+      const response = await fetch(`${API_URL}/links`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -28,7 +30,7 @@ export default function Home() {
 
       if (response.ok) {
         const data = await response.json();
-        setShortenedUrl(`http://localhost:3001/${data.slug}`);
+        setShortenedUrl(`${API_URL}/${data.slug}`);
       } else {
         console.error("Failed to shorten URL");
       }
