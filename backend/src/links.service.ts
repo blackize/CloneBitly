@@ -6,8 +6,8 @@ export class LinksService {
     constructor(private prisma: PrismaService) { }
 
     async createShortLink(originalUrl: string) {
-        // Generate a 6-character alphanumeric slug
-        const slug = Math.random().toString(36).substring(2, 8);
+        // Basic slug generation - can be improved later
+        const slug = Math.random().toString(36).substring(7);
 
         return this.prisma.shortLink.create({
             data: {

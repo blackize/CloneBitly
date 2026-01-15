@@ -8,7 +8,7 @@ export default function Home() {
   const [status, setStatus] = useState<"loading" | "online" | "offline">("loading");
   const [shortenedUrl, setShortenedUrl] = useState("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || (typeof window !== 'undefined' ? window.location.origin : '');
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
   useEffect(() => {
     // Check backend health
@@ -30,8 +30,7 @@ export default function Home() {
 
       if (response.ok) {
         const data = await response.json();
-        const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-        setShortenedUrl(`${baseUrl}/${data.slug}`);
+        setShortenedUrl(`${API_URL}/${data.slug}`);
       } else {
         console.error("Failed to shorten URL");
       }
