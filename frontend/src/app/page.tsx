@@ -8,7 +8,7 @@ export default function Home() {
   const [status, setStatus] = useState<"loading" | "online" | "offline">("loading");
   const [shortenedUrl, setShortenedUrl] = useState("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || (typeof window !== 'undefined' ? window.location.origin : '');
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || (typeof window !== 'undefined' ? `${window.location.origin}/api` : '');
 
   useEffect(() => {
     // Check backend health
