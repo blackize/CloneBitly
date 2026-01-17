@@ -5,10 +5,14 @@ import Image from "next/image";
 
 export default function Home() {
   const [url, setUrl] = useState("");
+  const [customSlug, setCustomSlug] = useState("");
   const [status, setStatus] = useState<"loading" | "online" | "offline">("loading");
   const [shortenedUrl, setShortenedUrl] = useState("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL ||
+    (typeof window !== "undefined" && window.location.hostname !== "localhost"
+      ? `${window.location.origin}/api`
+      : "http://localhost:3001");
 
   useEffect(() => {
     // Check backend health
@@ -25,12 +29,13 @@ export default function Home() {
       const response = await fetch(`${API_URL}/links`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, customSlug }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        setShortenedUrl(`${API_URL}/${data.slug}`);
+        const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+        setShortenedUrl(`${baseUrl}/${data.slug}`);
       } else {
         console.error("Failed to shorten URL");
       }
@@ -63,22 +68,34 @@ export default function Home() {
 
         <form
           onSubmit={handleShorten}
-          className="glass group relative mb-8 flex items-center rounded-2xl p-2 transition-all hover:scale-[1.01] animate-glow"
+          className="glass group relative mb-8 flex flex-col items-center rounded-2xl p-2 transition-all hover:scale-[1.01] animate-glow"
         >
-          <input
-            type="url"
-            placeholder="Paste your long link here..."
-            className="w-full bg-transparent px-6 py-4 text-lg text-white outline-none placeholder:text-zinc-600"
-            required
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="hidden sm:flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white transition-all hover:bg-blue-500 active:scale-95"
-          >
-            Shorten
-          </button>
+          <div className="flex w-full items-center">
+            <input
+              type="url"
+              placeholder="Paste your long link here..."
+              className="w-full bg-transparent px-6 py-4 text-lg text-white outline-none placeholder:text-zinc-600"
+              required
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="hidden sm:flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white transition-all hover:bg-blue-500 active:scale-95"
+            >
+              Shorten
+            </button>
+          </div>
+          <div className="flex w-full items-center border-t border-zinc-800/50 px-6 py-2">
+            <span className="text-zinc-500 text-sm mr-2">Custom Alias (optional): bitsly.com/</span>
+            <input
+              type="text"
+              placeholder="my-link"
+              className="bg-transparent text-sm text-blue-400 outline-none placeholder:text-zinc-700"
+              value={customSlug}
+              onChange={(e) => setCustomSlug(e.target.value.replace(/[^a-zA-Z0-9_-]/g, ''))}
+            />
+          </div>
         </form>
 
         {/* Shortened URL Display */}
