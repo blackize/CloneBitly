@@ -15,6 +15,16 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Get('health')
+  async healthCheck() {
+    try {
+      await this.linksService.healthCheck();
+      return { status: 'ok', database: 'connected' };
+    } catch (error: any) {
+      return { status: 'error', database: 'disconnected', error: error.message };
+    }
+  }
+
   @Post('links')
   async shorten(@Body('url') url: string, @Body('customSlug') customSlug?: string) {
     try {

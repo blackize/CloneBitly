@@ -55,4 +55,10 @@ export class LinksService {
 
         return link.originalUrl;
     }
+
+    async healthCheck() {
+        // Simple query to test database connection
+        await this.prisma.$queryRaw`SELECT 1`;
+        return true;
+    }
 }
