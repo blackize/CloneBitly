@@ -70,18 +70,18 @@ export default function Home() {
           onSubmit={handleShorten}
           className="glass group relative mb-8 flex flex-col items-center rounded-2xl p-2 transition-all hover:scale-[1.01] animate-glow"
         >
-          <div className="flex w-full items-center">
+          <div className="flex w-full flex-col sm:flex-row sm:items-center">
             <input
               type="url"
               placeholder="Paste your long link here..."
-              className="w-full bg-transparent px-6 py-4 text-lg text-white outline-none placeholder:text-zinc-600"
+              className="w-full bg-transparent px-6 py-4 text-lg text-white outline-none placeholder:text-zinc-600 sm:flex-1"
               required
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
             <button
               type="submit"
-              className="hidden sm:flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white transition-all hover:bg-blue-500 active:scale-95"
+              className="mt-2 sm:mt-0 sm:ml-2 flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm sm:px-8 sm:py-4 sm:text-base font-semibold text-white transition-all hover:bg-blue-500 active:scale-95"
             >
               Shorten
             </button>
