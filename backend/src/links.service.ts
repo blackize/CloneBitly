@@ -30,28 +30,18 @@ export class LinksService {
 
     async getOriginalUrl(slug: string, metadata?: { ip?: string; ua?: string; referrer?: string }) {
         const link = await this.prisma.shortLink.findUnique({
-            where: { slug, isActive: true },
+            where: { slug },
         });
 
         if (!link) {
             throw new NotFoundException('Short link not found');
         }
 
-        // Increment click count and record event asynchronously
-        this.prisma.$transaction([
-            this.prisma.shortLink.update({
-                where: { id: link.id },
-                data: { clickCount: { increment: 1 } },
-            }),
-            this.prisma.clickEvent.create({
-                data: {
-                    shortLinkId: link.id,
-                    ipAddress: metadata?.ip,
-                    userAgent: metadata?.ua,
-                    referrer: metadata?.referrer,
-                },
-            }),
-        ]).catch(err => console.error('Failed to record click data', err));
+        // Increment click count asynchronously
+        this.prisma.shortLink.update({
+            where: { id: link.id },
+            data: { clickCount: { increment: 1 } },
+        }).catch(err => console.error('Failed to update click count', err));
 
         return link.originalUrl;
     }
