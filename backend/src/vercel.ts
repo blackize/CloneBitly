@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { configure as serverlessExpress } from '@codegenie/serverless-express';
+import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
 import { PrismaService } from './prisma.service';
 
@@ -9,7 +9,12 @@ let cachedServer: any;
 async function bootstrap() {
     if (!cachedServer) {
         const expressApp = express();
-        const nestApp = await NestFactory.create(AppModule, new (require('@nestjs/platform-express').ExpressAdapter)(expressApp));
+
+        // Enable JSON parsing
+        expressApp.use(express.json());
+        expressApp.use(express.urlencoded({ extended: true }));
+
+        const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
 
         // Enable CORS
         nestApp.enableCors({
@@ -22,14 +27,13 @@ async function bootstrap() {
         prismaService.enableShutdownHooks(nestApp);
 
         await nestApp.init();
-        cachedServer = serverlessExpress({ app: expressApp });
+
+        cachedServer = expressApp;
     }
     return cachedServer;
 }
 
-const handler = async (event: any, context: any, callback: any) => {
-    const server = await bootstrap();
-    return server(event, context, callback);
-};
-
-export default handler;
+export default async function handler(req: any, res: any) {
+    const app = await bootstrap();
+    return app(req, res);
+}
