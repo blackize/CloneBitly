@@ -17,7 +17,7 @@
     ],
     "routes": [
         {
-            "src": "/api(/.*)?",
+            "src": "/api/(.*)",
             "dest": "backend/src/vercel.ts",
             "headers": {
                 "Access-Control-Allow-Origin": "*"
@@ -30,6 +30,12 @@
         {
             "src": "/(.*)",
             "dest": "frontend/$1"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api"
         }
     ]
 }
