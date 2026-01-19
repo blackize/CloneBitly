@@ -26,9 +26,9 @@ export class AppController {
   }
 
   @Post('links')
-  async shorten(@Body('url') url: string, @Body('customSlug') customSlug?: string) {
+  async shorten(@Body() body: { url: string; customSlug?: string }) {
     try {
-      return await this.linksService.createShortLink(url, customSlug);
+      return await this.linksService.createShortLink(body.url, body.customSlug);
     } catch (err: any) {
       if (err.message === 'Custom slug already in use') {
         throw new ConflictException(err.message);
