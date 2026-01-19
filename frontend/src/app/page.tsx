@@ -87,7 +87,7 @@ export default function Home() {
             </button>
           </div>
           <div className="flex w-full items-center border-t border-zinc-800/50 px-6 py-2">
-            <span className="text-zinc-500 text-sm mr-2">Custom Alias (optional): bitsly.com/</span>
+            <span className="text-zinc-500 text-sm mr-2">Custom Alias (optional): clone-bitly-two.vercel.app/</span>
             <input
               type="text"
               placeholder="my-link"
