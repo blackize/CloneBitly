@@ -3,7 +3,7 @@ import type { Request, Response } from 'express';
 import { AppService } from './app.service';
 import { LinksService } from './links.service';
 
-@Controller()
+@Controller('api')
 export class AppController {
   constructor(
     private readonly appService: AppService,

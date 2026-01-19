@@ -16,9 +16,6 @@ async function bootstrap() {
 
         const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
 
-        // Set global prefix for API routes
-        nestApp.setGlobalPrefix('api');
-
         // Enable CORS
         nestApp.enableCors({
             origin: true,
