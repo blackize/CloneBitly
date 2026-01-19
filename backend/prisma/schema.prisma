@@ -29,18 +29,10 @@ model ShortLink {
   id              String       @id @default(uuid())
   originalUrl     String
   slug            String       @unique
-  userId          String?
-  user            User?        @relation(fields: [userId], references: [id])
   createdAt       DateTime     @default(now())
-  expiresAt       DateTime?
-  isActive        Boolean      @default(true)
-  androidFallback String?
-  iosFallback     String?
-  clicks          ClickEvent[]
-  clickCount      Int          @default(0) // Denormalized count for performance
+  clickCount      Int          @default(0)
 
   @@index([slug])
-  @@index([userId])
   @@map("short_links")
 }
 
