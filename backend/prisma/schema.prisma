@@ -9,11 +9,11 @@ datasource db {
 
 
 model ShortLink {
-  id              String       @id @default(uuid())
-  originalUrl     String
-  slug            String       @unique
-  createdAt       DateTime     @default(now())
-  clickCount      Int          @default(0)
+  id              String       @id @default(uuid()) @map("id")
+  originalUrl     String       @map("originalurl")
+  slug            String       @unique @map("slug")
+  createdAt       DateTime     @default(now()) @map("createdat")
+  clickCount      Int          @default(0) @map("clickcount")
 
   @@index([slug])
   @@map("short_links")
