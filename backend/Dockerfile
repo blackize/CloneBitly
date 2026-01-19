@@ -3,14 +3,15 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
+COPY prisma ./prisma/
 
 # Install dependencies (including dev dependencies for build)
-RUN npm install
-
-COPY . .
+RUN npm install --ignore-scripts
 
 # Generate Prisma Client
 RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npx prisma generate
+
+COPY . .
 
 RUN npm run build
 
