@@ -7,23 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
-model User {
-  id           String      @id @default(uuid())
-  email        String      @unique
-  passwordHash String
-  role         Role        @default(USER)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  shortLinks   ShortLink[]
-  apiKeys      ApiKey[]
-
-  @@map("users")
-}
 
 model ShortLink {
   id              String       @id @default(uuid())
@@ -36,31 +19,4 @@ model ShortLink {
   @@map("short_links")
 }
 
-model ClickEvent {
-  id          String    @id @default(uuid())
-  shortLinkId String
-  shortLink   ShortLink @relation(fields: [shortLinkId], references: [id])
-  timestamp   DateTime  @default(now())
-  ipAddress   String? // Hashed for privacy
-  country     String?
-  userAgent   String?
-  referrer    String?
-  deviceType  String?
-  browser     String?
-  os          String?
 
-  @@index([shortLinkId])
-  @@index([timestamp])
-  @@map("click_events")
-}
-
-model ApiKey {
-  id        String   @id @default(uuid())
-  key       String   @unique
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-
-  @@index([key])
-  @@map("api_keys")
-}
