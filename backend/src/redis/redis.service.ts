@@ -3,7 +3,7 @@ import { Redis } from 'ioredis';
 
 @Injectable()
 export class RedisService implements OnModuleDestroy {
-  constructor(@Inject('REDIS_CLIENT') private readonly redisClient: Redis | null) {}
+  constructor(@Inject('REDIS_CLIENT') private readonly redisClient: Redis | null) { }
 
   async get<T>(key: string): Promise<T | null> {
     if (!this.redisClient) return null;
@@ -35,6 +35,13 @@ export class RedisService implements OnModuleDestroy {
   // Add a health check method for Redis
   async ping(): Promise<boolean> {
     if (!this.redisClient) return false;
+
+    // Check if client is in a state that can ping
+    if (this.redisClient.status !== 'connect' && this.redisClient.status !== 'ready') {
+      console.warn(`Redis client status is ${this.redisClient.status}, ping skipped.`);
+      return false;
+    }
+
     try {
       const result = await this.redisClient.ping();
       return result === 'PONG';

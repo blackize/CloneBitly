@@ -10,12 +10,25 @@ import { RedisService } from './redis.service';
       provide: 'REDIS_CLIENT',
       useFactory: (configService: ConfigService) => {
         const redisUrl = configService.get<string>('REDIS_URL');
-        if (!redisUrl) {
-          console.warn('REDIS_URL is not defined. Redis caching will be disabled.');
-          return null; // Return null if Redis is not configured
-        }
         const Redis = require('ioredis');
-        return new Redis(redisUrl);
+
+        if (redisUrl) {
+          return new Redis(redisUrl);
+        }
+
+        const host = configService.get<string>('REDIS_HOST');
+        const port = configService.get<number>('REDIS_PORT');
+
+        if (host && port) {
+          return new Redis({
+            host,
+            port,
+            retryStrategy: (times: number) => Math.min(times * 50, 2000),
+          });
+        }
+
+        console.warn('Neither REDIS_URL nor REDIS_HOST/PORT are defined. Redis caching will be disabled.');
+        return null;
       },
       inject: [ConfigService],
     },
@@ -23,4 +36,4 @@ import { RedisService } from './redis.service';
   ],
   exports: [RedisService],
 })
-export class RedisModule {}
+export class RedisModule { }

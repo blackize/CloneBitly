@@ -12,14 +12,8 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
                     url: configService.get<string>('DATABASE_URL'),
                 },
             },
-            // Increase connection timeout for serverless environments (e.g., Vercel)
-            // Default is 10 seconds, increasing to 20 seconds
-            __internal: {
-                engine: {
-                    connectTimeout: 20000,
-                },
-            },
         });
+    }
 
     async onModuleInit() {
         await this.$connect();
