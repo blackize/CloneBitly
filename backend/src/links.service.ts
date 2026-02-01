@@ -79,6 +79,24 @@ export class LinksService {
         return link.originalUrl;
     }
 
+    async getLinkStats(slug: string) {
+        const link = await this.prisma.shortLink.findUnique({
+            where: { slug },
+            select: {
+                slug: true,
+                originalUrl: true,
+                clickCount: true,
+                createdAt: true,
+            },
+        });
+
+        if (!link) {
+            throw new NotFoundException('Short link not found');
+        }
+
+        return link;
+    }
+
     async healthCheck() {
         // Simple query to test database connection
         await this.prisma.$queryRaw`SELECT 1`;

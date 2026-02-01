@@ -39,4 +39,9 @@ export class AppController {
     }
   }
 
+  @Get('links/:slug/stats')
+  async getStats(@Param('slug') slug: string) {
+    return await this.linksService.getLinkStats(slug);
+  }
+
 }
