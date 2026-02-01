@@ -9,7 +9,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
             log: process.env.NODE_ENV === 'development' ? ['query', 'info', 'warn', 'error'] : ['error'],
             datasources: {
                 db: {
-                    url: configService.get<string>('DATABASE_URL'),
+                    url: `${configService.get<string>('DATABASE_URL')}&connection_limit=10&connect_timeout=30`,
                 },
             },
         });

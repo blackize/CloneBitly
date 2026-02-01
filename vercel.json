@@ -28,7 +28,7 @@
             }
         },
         {
-            "src": "/(favicon\\.(ico|png)|robots\\.txt|sitemap\\.xml)",
+            "src": "/(stats/.*|favicon\\.(ico|png)|robots\\.txt|sitemap\\.xml)",
             "dest": "frontend/$1"
         },
         {
