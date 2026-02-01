@@ -18,8 +18,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "postinstall": "DATABASE_URL=\"$DATABASE_URL\" prisma generate",
-    "vercel-build": "npm install --prod && npm run build"
+    "postinstall": "DATABASE_URL=\"$DATABASE_URL\" prisma generate"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
