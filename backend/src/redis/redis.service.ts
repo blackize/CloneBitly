@@ -50,4 +50,19 @@ export class RedisService implements OnModuleDestroy {
       return false;
     }
   }
+
+  async increment(key: string, ttlSeconds: number): Promise<number> {
+    if (!this.redisClient) return 0;
+
+    const multi = this.redisClient.multi();
+    multi.incr(key);
+    multi.expire(key, ttlSeconds, 'NX'); // Only set expiry if it doesn't exist
+
+    const results = await multi.exec();
+    if (!results || !results[0]) return 0;
+
+    const [err, count] = results[0];
+    if (err) throw err;
+    return count as number;
+  }
 }
