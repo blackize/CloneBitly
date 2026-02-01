@@ -21,18 +21,26 @@
     ],
     "routes": [
         {
-            "src": "/api(/.*)?",
+            "src": "/api/(.*)",
             "dest": "backend/src/vercel.ts",
             "headers": {
                 "Access-Control-Allow-Origin": "*"
             }
         },
         {
-            "src": "/(stats/.*|favicon\\.(ico|png)|robots\\.txt|sitemap\\.xml)",
+            "src": "/api",
+            "dest": "backend/src/vercel.ts"
+        },
+        {
+            "src": "/(favicon\\.(ico|png)|robots\\.txt|sitemap\\.xml)",
             "dest": "frontend/$1"
         },
         {
-            "src": "/([^/]{3,20})",
+            "src": "/stats(/.*)?",
+            "dest": "frontend/stats$1"
+        },
+        {
+            "src": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.txt|.*\\.xml)[^/]{1,20})",
             "dest": "backend/src/vercel.ts"
         },
         {
