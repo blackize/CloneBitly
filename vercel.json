@@ -21,40 +21,44 @@
     ],
     "rewrites": [
         {
-            "source": "/api/(.*)",
-            "destination": "backend/src/vercel.ts"
+            "source": "/api/:path*",
+            "destination": "/backend/src/vercel.ts"
         },
         {
             "source": "/api",
-            "destination": "backend/src/vercel.ts"
+            "destination": "/backend/src/vercel.ts"
         },
         {
             "source": "/favicon.ico",
-            "destination": "frontend/favicon.ico"
+            "destination": "/frontend/favicon.ico"
         },
         {
             "source": "/favicon.png",
-            "destination": "frontend/favicon.png"
+            "destination": "/frontend/favicon.png"
         },
         {
             "source": "/robots.txt",
-            "destination": "frontend/robots.txt"
+            "destination": "/frontend/robots.txt"
         },
         {
             "source": "/sitemap.xml",
-            "destination": "frontend/sitemap.xml"
+            "destination": "/frontend/sitemap.xml"
         },
         {
             "source": "/stats/:slug*",
-            "destination": "frontend/stats/:slug*"
+            "destination": "/frontend/stats/:slug*"
         },
         {
             "source": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
-            "destination": "backend/src/vercel.ts"
+            "destination": "/backend/src/vercel.ts"
+        },
+        {
+            "source": "/",
+            "destination": "/frontend"
         },
         {
             "source": "/:path*",
-            "destination": "frontend/:path*"
+            "destination": "/frontend/:path*"
         }
     ]
 }
