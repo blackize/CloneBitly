@@ -32,12 +32,20 @@
             "dest": "backend/src/vercel.ts"
         },
         {
+            "src": "/stats/(.*)",
+            "dest": "/frontend/stats/$1"
+        },
+        {
+            "src": "/stats",
+            "dest": "/frontend/stats"
+        },
+        {
             "src": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
             "dest": "backend/src/vercel.ts"
         },
         {
             "src": "/(.*)",
-            "dest": "frontend/$1"
+            "dest": "/frontend/$1"
         }
     ]
 }
