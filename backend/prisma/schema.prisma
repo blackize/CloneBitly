@@ -8,6 +8,7 @@ datasource db {
 }
 
 
+// Cloud deployment mapping fix
 model ShortLink {
   id              String       @id @default(uuid()) @map("id")
   originalUrl     String       @map("originalurl")
