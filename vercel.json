@@ -12,7 +12,8 @@
                 "includeFiles": [
                     "backend/prisma/schema.prisma"
                 ]
-            }
+            },
+            "buildCommand": "cd backend && npm run vercel-build"
         }
     ],
     "routes": [
