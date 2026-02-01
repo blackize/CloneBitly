@@ -18,11 +18,13 @@ import { RedisService } from './redis.service';
 
         const host = configService.get<string>('REDIS_HOST');
         const port = configService.get<number>('REDIS_PORT');
+        const password = configService.get<string>('REDIS_PASSWORD');
 
         if (host && port) {
           return new Redis({
             host,
             port,
+            password,
             retryStrategy: (times: number) => Math.min(times * 50, 2000),
           });
         }
