@@ -19,33 +19,42 @@
             }
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/(.*)",
-            "dest": "backend/src/vercel.ts",
-            "headers": {
-                "Access-Control-Allow-Origin": "*"
-            }
+            "source": "/api/(.*)",
+            "destination": "backend/src/vercel.ts"
         },
         {
-            "src": "/api",
-            "dest": "backend/src/vercel.ts"
+            "source": "/api",
+            "destination": "backend/src/vercel.ts"
         },
         {
-            "src": "/stats/(.*)",
-            "dest": "/frontend/stats/$1"
+            "source": "/favicon.ico",
+            "destination": "frontend/favicon.ico"
         },
         {
-            "src": "/stats",
-            "dest": "/frontend/stats"
+            "source": "/favicon.png",
+            "destination": "frontend/favicon.png"
         },
         {
-            "src": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
-            "dest": "backend/src/vercel.ts"
+            "source": "/robots.txt",
+            "destination": "frontend/robots.txt"
         },
         {
-            "src": "/(.*)",
-            "dest": "/frontend/$1"
+            "source": "/sitemap.xml",
+            "destination": "frontend/sitemap.xml"
+        },
+        {
+            "source": "/stats/:slug*",
+            "destination": "frontend/stats/:slug*"
+        },
+        {
+            "source": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
+            "destination": "backend/src/vercel.ts"
+        },
+        {
+            "source": "/:path*",
+            "destination": "frontend/:path*"
         }
     ]
 }
