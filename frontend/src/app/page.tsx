@@ -129,7 +129,7 @@ export default function Home() {
       </main>
 
       <footer className="absolute bottom-8 text-sm text-zinc-600">
-        © 2026 Bitly Clone • Built with NestJS \u0026 Next.js
+        <p>© 2026 Bitly Clone • Built with NestJS & Next.js</p>
       </footer>
     </div>
   );
