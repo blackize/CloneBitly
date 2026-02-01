@@ -16,8 +16,7 @@ export class RedirectController {
   ) {
     if (slug.endsWith('+')) {
       const realSlug = slug.slice(0, -1);
-      const frontendUrl = process.env.FRONTEND_URL || 'https://shortnow.site';
-      return res.redirect(`${frontendUrl}/stats/${realSlug}`);
+      return res.redirect(`/stats/${realSlug}`);
     }
 
     const ip = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress;

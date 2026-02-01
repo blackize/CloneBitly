@@ -32,36 +32,12 @@
             "dest": "backend/src/vercel.ts"
         },
         {
-            "src": "/favicon.ico",
-            "dest": "frontend/favicon.ico"
-        },
-        {
-            "src": "/favicon.png",
-            "dest": "frontend/favicon.png"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "frontend/robots.txt"
-        },
-        {
-            "src": "/sitemap.xml",
-            "dest": "frontend/sitemap.xml"
-        },
-        {
-            "src": "/stats/(.*)",
-            "dest": "frontend/stats/$1"
-        },
-        {
-            "src": "/stats",
-            "dest": "frontend/stats"
-        },
-        {
-            "src": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
+            "src": "/((?!api|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
             "dest": "backend/src/vercel.ts"
         },
         {
             "src": "/(.*)",
-            "dest": "frontend/$1"
+            "dest": "frontend/"
         }
     ]
 }
