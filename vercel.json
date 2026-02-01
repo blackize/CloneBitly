@@ -1,6 +1,6 @@
 {
     "installCommand": "npm install",
-    "version": 2,
+    "version": 2, 
     "builds": [
         {
             "src": "frontend/package.json",
