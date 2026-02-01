@@ -1,5 +1,5 @@
 {
-    "installCommand": "npm install && npm install --workspace backend --omit=dev",
+    "installCommand": "npm install",
     "version": 2,
     "builds": [
         {
@@ -16,6 +16,12 @@
             }
         }
     ],
+    "functions": {
+        "backend/src/vercel.ts": {
+            "memory": 1024,
+            "maxDuration": 30
+        }
+    },
     "routes": [
         {
             "src": "/api(/.*)?",
