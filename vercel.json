@@ -32,15 +32,15 @@
             "dest": "backend/src/vercel.ts"
         },
         {
-            "src": "/(favicon\\.(ico|png)|robots\\.txt|sitemap\\.xml)",
-            "dest": "frontend/$1"
+            "src": "/(favicon|robots|sitemap).*\\.(ico|png|txt|xml)",
+            "dest": "frontend/$1$2"
         },
         {
-            "src": "/stats(/.*)?",
+            "src": "/stats(.*)",
             "dest": "frontend/stats$1"
         },
         {
-            "src": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.txt|.*\\.xml)[^/]{1,20})",
+            "src": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
             "dest": "backend/src/vercel.ts"
         },
         {
