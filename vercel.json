@@ -1,4 +1,5 @@
 {
+    "installCommand": "npm install && npm install --workspace backend --omit=dev",
     "version": 2,
     "builds": [
         {
