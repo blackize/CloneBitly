@@ -1,10 +1,4 @@
 {
-    "build": {
-        "env": {
-            "YARN_ENABLE_IMMUTABLE_INSTALLS": "false"
-        },
-        "installCommand": "npm install && npm install --prefix backend --omit=dev"
-    },
     "version": 2,
     "builds": [
         {
