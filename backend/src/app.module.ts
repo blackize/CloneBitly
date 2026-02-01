@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { RedirectController } from './redirect.controller';
 import { AppService } from './app.service';
@@ -10,6 +10,6 @@ import { RedisModule } from './redis/redis.module';
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), RedisModule],
   controllers: [AppController, RedirectController],
-  providers: [AppService, PrismaService, LinksService],
+  providers: [AppService, PrismaService, LinksService, ConfigService],
 })
 export class AppModule { }
