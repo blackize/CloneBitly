@@ -45,16 +45,16 @@ export default function Home() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4">
+    <div className="relative flex min-h-screen flex-col items-center px-4 py-8 sm:py-0 sm:justify-center overflow-x-hidden">
       {/* Background Orbs */}
       <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-600/10 blur-[100px]" />
       <div className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-indigo-600/10 blur-[100px]" />
 
-      <main className="z-10 w-full max-w-2xl text-center">
+      <main className="z-10 w-full max-w-2xl text-center flex-1 flex flex-col justify-center py-12">
         <div className="mb-12 flex flex-col items-center">
           <div className="mb-6 flex items-center gap-2">
             <div className="h-3 w-3 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-sm font-medium tracking-widest text-zinc-500 uppercase">
+            <span className="text-sm font-medium tracking-widest text-zinc-500 uppercase font-geist-mono">
               Bitly Clone v1.0
             </span>
           </div>
@@ -86,12 +86,12 @@ export default function Home() {
               Shorten
             </button>
           </div>
-          <div className="flex w-full items-center border-t border-zinc-800/50 px-6 py-2">
-            <span className="text-zinc-500 text-sm mr-2">Custom Alias (optional): shortnow.site/</span>
+          <div className="flex w-full items-center border-t border-zinc-800/50 px-6 py-4 overflow-hidden">
+            <span className="text-zinc-500 text-xs sm:text-sm mr-2 whitespace-nowrap">Alias: shortnow.site/</span>
             <input
               type="text"
               placeholder="my-link"
-              className="bg-transparent text-sm text-blue-400 outline-none placeholder:text-zinc-700"
+              className="bg-transparent text-xs sm:text-sm text-blue-400 outline-none placeholder:text-zinc-700 min-w-0 flex-1"
               value={customSlug}
               onChange={(e) => setCustomSlug(e.target.value.replace(/[^a-zA-Z0-9_-]/g, ''))}
             />
@@ -100,10 +100,10 @@ export default function Home() {
 
         {/* Shortened URL Display */}
         {shortenedUrl && (
-          <div className="glass flex items-center justify-between rounded-2xl p-6 text-left animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div>
+          <div className="glass flex flex-col sm:flex-row items-center justify-between rounded-2xl p-6 text-left animate-in fade-in slide-in-from-bottom-4 duration-500 gap-4 mb-12">
+            <div className="w-full sm:w-auto overflow-hidden">
               <p className="text-sm text-zinc-500 mb-1">Success! Your link is ready:</p>
-              <a href={shortenedUrl} target="_blank" className="text-xl font-medium text-blue-400 hover:underline">
+              <a href={shortenedUrl} target="_blank" className="text-lg sm:text-xl font-medium text-blue-400 hover:underline break-all">
                 {shortenedUrl}
               </a>
             </div>
@@ -111,24 +111,30 @@ export default function Home() {
               onClick={() => {
                 navigator.clipboard.writeText(shortenedUrl);
               }}
-              className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 transition-colors"
+              className="w-full sm:w-auto rounded-lg bg-zinc-800 px-6 py-2 text-sm font-medium text-white hover:bg-zinc-700 transition-colors"
             >
               Copy
             </button>
           </div>
         )}
 
-        <div className="mt-12 flex items-center justify-center gap-8 text-zinc-500 text-sm">
+        <div className="mt-auto pt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-zinc-500 text-xs sm:text-sm border-t border-zinc-800/20">
           <div className="flex items-center gap-2">
             <div className={`h-2 w-2 rounded-full ${status === 'online' ? 'bg-green-500' : status === 'offline' ? 'bg-red-500' : 'bg-zinc-500'}`} />
-            Backend: {status === 'loading' ? 'checking...' : status}
+            Backend: <span className="text-zinc-400 font-medium lowercase italic">{status === 'loading' ? 'checking...' : status}</span>
           </div>
-          <div>Database: Connected</div>
-          <div>Redis: Active</div>
+          <div className="flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-green-500/50" />
+            Database: <span className="text-zinc-400 font-medium">Connected</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-blue-500" />
+            Redis: <span className="text-zinc-400 font-medium">Active</span>
+          </div>
         </div>
       </main>
 
-      <footer className="absolute bottom-8 text-sm text-zinc-600">
+      <footer className="w-full py-8 text-center text-sm text-zinc-600 z-10">
         <p>© 2026 Bitly Clone • Built with NestJS & Next.js</p>
       </footer>
     </div>
