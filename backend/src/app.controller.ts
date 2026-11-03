@@ -1,5 +1,4 @@
-import { Controller, Get, Post, Body, Param, Res, Req, Headers, ConflictException, UseGuards } from '@nestjs/common';
-import type { Request, Response } from 'express';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { LinksService } from './links.service';
 import { RateLimitGuard } from './common/guards/rate-limit.guard';
@@ -29,19 +28,11 @@ export class AppController {
   @Post('links')
   @UseGuards(RateLimitGuard)
   async shorten(@Body() body: { url: string; customSlug?: string }) {
-    try {
-      return await this.linksService.createShortLink(body.url, body.customSlug);
-    } catch (err: any) {
-      if (err.message === 'Custom slug already in use') {
-        throw new ConflictException(err.message);
-      }
-      throw err;
-    }
+    return await this.linksService.createShortLink(body?.url, body?.customSlug);
   }
 
   @Get('links/:slug/stats')
   async getStats(@Param('slug') slug: string) {
     return await this.linksService.getLinkStats(slug);
   }
-
 }

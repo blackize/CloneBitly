@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res, Req, Headers } from '@nestjs/common';
+import { Controller, Get, Param, Res, Req, Headers, NotFoundException } from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { LinksService } from './links.service';
 
@@ -20,7 +20,18 @@ export class RedirectController {
     }
 
     const ip = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress;
-    const originalUrl = await this.linksService.getOriginalUrl(slug, { ip, ua, referrer });
-    return res.redirect(originalUrl);
+    try {
+      const originalUrl = await this.linksService.getOriginalUrl(slug, { ip, ua, referrer });
+      return res.redirect(originalUrl);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        const sanitizedSlug = slug.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 20);
+        if (sanitizedSlug.length >= 2) {
+          return res.redirect(`/?claim=${encodeURIComponent(sanitizedSlug)}`);
+        }
+        return res.redirect('/');
+      }
+      throw error;
+    }
   }
 }

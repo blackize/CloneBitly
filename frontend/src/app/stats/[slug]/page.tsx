@@ -69,7 +69,7 @@ export default function StatsPage() {
           Want to claim this custom alias right now for free?
         </p>
         <Link
-          href="/"
+          href={`/?claim=${encodeURIComponent(slug || "")}`}
           className="mt-8 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-500 transition-colors"
         >
           Claim shortnow.site/{slug} Free →

@@ -46,6 +46,7 @@ export default function ShortenerWidget({
   const [status, setStatus] = useState<"loading" | "online" | "offline">("loading");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [claimedBannerSlug, setClaimedBannerSlug] = useState<string | null>(null);
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
 
   const [latestLink, setLatestLink] = useState<StoredShortLink | null>(null);
@@ -120,8 +121,15 @@ export default function ShortenerWidget({
       .then((res) => (res.ok ? setStatus("online") : setStatus("offline")))
       .catch(() => setStatus("offline"));
 
-    // Load recent links from localStorage
+    // Load recent links from localStorage and check ?claim= query param
     if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const claimParam = params.get("claim")?.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 20);
+      if (claimParam && claimParam.length >= 2) {
+        setCustomSlug(claimParam);
+        setClaimedBannerSlug(claimParam);
+      }
+
       try {
         const raw = window.localStorage.getItem(STORAGE_KEY);
         if (raw) {
@@ -195,10 +203,21 @@ export default function ShortenerWidget({
       });
 
       if (!response.ok) {
-        if (response.status === 409) {
-          throw new Error("This custom alias is already taken. Try another slug!");
+        let serverMessage = "";
+        try {
+          const errJson = await response.json();
+          serverMessage = Array.isArray(errJson.message)
+            ? errJson.message.join(" ")
+            : errJson.message;
+        } catch {
+          // ignore JSON parse failure
         }
-        throw new Error("Could not shorten this link right now. Please check the URL and try again.");
+        if (response.status === 409) {
+          throw new Error(serverMessage || "This custom alias is already taken. Try another slug!");
+        }
+        throw new Error(
+          serverMessage || "Could not shorten this link right now. Please check the URL and try again."
+        );
       }
 
       const data = await response.json();
@@ -210,6 +229,7 @@ export default function ShortenerWidget({
       };
 
       setLatestLink(created);
+      setClaimedBannerSlug(null);
       setUrl("");
       setCustomSlug("");
 
@@ -240,6 +260,27 @@ export default function ShortenerWidget({
 
   return (
     <div className="w-full max-w-3xl mx-auto">
+      {claimedBannerSlug && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-blue-500/40 bg-blue-500/10 px-5 py-3.5 text-left text-sm text-blue-200"
+        >
+          <span>
+            ✨ <strong className="font-mono text-white">shortnow.site/{claimedBannerSlug}</strong> is
+            available! Paste any destination URL below to claim this custom link for free.
+          </span>
+          <button
+            type="button"
+            onClick={() => setClaimedBannerSlug(null)}
+            aria-label="Dismiss availability notice"
+            className="text-xs text-blue-300 hover:text-white cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       <form
         onSubmit={handleSubmit}
         className="glass group relative mb-6 flex flex-col rounded-2xl p-3 sm:p-4 transition-all animate-glow border border-white/10"
