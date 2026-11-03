@@ -69,12 +69,14 @@ export default function SeoLandingTemplate({ config }: SeoLandingTemplateProps) 
       <header className="z-20 w-full border-b border-white/5 bg-black/40 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <span
-              aria-hidden="true"
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white shadow-lg shadow-blue-600/30 group-hover:bg-blue-500 transition-colors"
-            >
-              S
-            </span>
+            <img
+              src="/logo.png"
+              alt="Shortnow logo"
+              width={36}
+              height={36}
+              fetchPriority="high"
+              className="h-9 w-9 object-contain transition-transform group-hover:scale-105"
+            />
             <span className="text-lg font-bold tracking-tight text-white">
               Short<span className="text-blue-500">now</span>
             </span>

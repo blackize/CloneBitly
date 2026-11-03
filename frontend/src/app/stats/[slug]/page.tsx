@@ -111,9 +111,17 @@ export default function StatsPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+            className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-blue-400 transition-colors"
           >
-            ← Shorten Another URL
+            <img
+              src="/logo.png"
+              alt="Shortnow logo"
+              width={28}
+              height={28}
+              className="h-7 w-7 object-contain"
+            />
+            <span>Short<span className="text-blue-500">now</span></span>
+            <span className="text-zinc-500 font-normal ml-1">← Home</span>
           </Link>
           <button
             type="button"

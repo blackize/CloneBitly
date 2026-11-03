@@ -15,8 +15,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shortnow.site"),
   title: "Shortnow | Minimalist URL Shortener",
-  description: "Fast, simple, and powerful URL shortening for your links. Track clicks and manage your connections with Shortnow.",
+  description:
+    "Fast, simple, and powerful URL shortening for your links. Track clicks and manage your connections with Shortnow.",
   keywords: ["url shortener", "bitly clone", "link management", "fast redirect"],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"],
+  },
   openGraph: {
     title: "Shortnow | Minimalist URL Shortener",
     description: "Fast, simple, and powerful URL shortening.",
@@ -24,9 +33,9 @@ export const metadata: Metadata = {
     siteName: "Shortnow",
     images: [
       {
-        url: "/favicon.png",
-        width: 512,
-        height: 512,
+        url: "/logo.png",
+        width: 256,
+        height: 256,
       },
     ],
     locale: "en_US",
@@ -36,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shortnow | Minimalist URL Shortener",
     description: "Fast, simple, and powerful URL shortening.",
-    images: ["/favicon.png"],
+    images: ["/logo.png"],
   },
 };
 

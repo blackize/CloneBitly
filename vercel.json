@@ -37,6 +37,18 @@
             "destination": "/frontend/favicon.png"
         },
         {
+            "source": "/logo.png",
+            "destination": "/frontend/logo.png"
+        },
+        {
+            "source": "/icon.png",
+            "destination": "/frontend/icon.png"
+        },
+        {
+            "source": "/apple-icon.png",
+            "destination": "/frontend/apple-icon.png"
+        },
+        {
             "source": "/robots.txt",
             "destination": "/frontend/robots.txt"
         },
