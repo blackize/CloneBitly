@@ -49,7 +49,15 @@
             "destination": "/frontend/stats/:slug*"
         },
         {
-            "source": "/((?!api|stats|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
+            "source": "/tools/:slug*",
+            "destination": "/frontend/tools/:slug*"
+        },
+        {
+            "source": "/tools",
+            "destination": "/frontend/tools"
+        },
+        {
+            "source": "/((?!api|stats|tools|favicon|robots|sitemap|.*\\.ico|.*\\.png|.*\\.txt|.*\\.xml)[^/]{1,20})",
             "destination": "/backend/src/vercel.ts"
         },
         {

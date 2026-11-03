@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /tools/
 Disallow: /api/
+Disallow: /stats/
 
 Sitemap: https://shortnow.site/sitemap.xml
