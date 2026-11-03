@@ -35,6 +35,7 @@ export default function ShortenerWidget({
   const utmMediumId = `${formId}-utm-medium`;
   const utmCampaignId = `${formId}-utm-campaign`;
   const utmContentId = `${formId}-utm-content`;
+  const waMessageId = `${formId}-wa-message`;
 
   const [url, setUrl] = useState("");
   const [customSlug, setCustomSlug] = useState("");
@@ -42,6 +43,7 @@ export default function ShortenerWidget({
   const [utmMedium, setUtmMedium] = useState("");
   const [utmCampaign, setUtmCampaign] = useState("");
   const [utmContent, setUtmContent] = useState("");
+  const [waMessage, setWaMessage] = useState("");
 
   const [status, setStatus] = useState<"loading" | "online" | "offline">("loading");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,11 +64,33 @@ export default function ShortenerWidget({
   const getOrigin = () =>
     typeof window !== "undefined" ? window.location.origin : "https://shortnow.site";
 
-  // Build final URL including optional UTM tags
+  // Build final URL including optional WhatsApp wa.me builder or UTM tags
   const buildFinalUrl = useCallback(
     (rawUrl: string) => {
       const trimmed = rawUrl.trim();
       if (!trimmed) return "";
+
+      if (mode === "whatsapp") {
+        // If user entered a phone number instead of a full URL, build https://wa.me/<digits>
+        if (!trimmed.startsWith("http://") && !trimmed.startsWith("https://") && !trimmed.startsWith("wa.me/")) {
+          const digits = trimmed.replace(/\D/g, "");
+          if (!digits) return "";
+          const baseWa = `https://wa.me/${digits}`;
+          return waMessage.trim()
+            ? `${baseWa}?text=${encodeURIComponent(waMessage.trim())}`
+            : baseWa;
+        }
+        try {
+          const parsedWa = new URL(trimmed.startsWith("http") ? trimmed : `https://${trimmed}`);
+          if (waMessage.trim()) {
+            parsedWa.searchParams.set("text", waMessage.trim());
+          }
+          return parsedWa.toString();
+        } catch {
+          return trimmed;
+        }
+      }
+
       if (mode !== "utm" || (!utmSource && !utmMedium && !utmCampaign && !utmContent)) {
         return trimmed;
       }
@@ -81,7 +105,7 @@ export default function ShortenerWidget({
         return trimmed;
       }
     },
-    [mode, utmSource, utmMedium, utmCampaign, utmContent]
+    [mode, utmSource, utmMedium, utmCampaign, utmContent, waMessage]
   );
 
   // Fetch live click counts for stored links
@@ -185,11 +209,14 @@ export default function ShortenerWidget({
       }
     }
 
-    const destinationUrl = buildFinalUrl(
-      rawInput.startsWith("http://") || rawInput.startsWith("https://")
-        ? rawInput
-        : `https://${rawInput}`
-    );
+    const destinationUrl =
+      mode === "whatsapp"
+        ? buildFinalUrl(rawInput)
+        : buildFinalUrl(
+            rawInput.startsWith("http://") || rawInput.startsWith("https://")
+              ? rawInput
+              : `https://${rawInput}`
+          );
 
     setIsSubmitting(true);
     try {
@@ -256,7 +283,8 @@ export default function ShortenerWidget({
       )}&color=3b82f6&bgcolor=0a0a0a`
     : "";
 
-  const previewUtmUrl = mode === "utm" && url.trim() ? buildFinalUrl(url) : "";
+  const previewUtmUrl =
+    (mode === "utm" || mode === "whatsapp") && url.trim() ? buildFinalUrl(url) : "";
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -287,12 +315,13 @@ export default function ShortenerWidget({
       >
         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
           <label htmlFor={urlInputId} className="sr-only">
-            Destination URL
+            {mode === "whatsapp" ? "WhatsApp Phone Number or Link" : "Destination URL"}
           </label>
           <input
             id={urlInputId}
             name="url"
-            type={mode === "tracker" ? "text" : "url"}
+            type={mode === "tracker" || mode === "whatsapp" ? "text" : "url"}
+            inputMode={mode === "whatsapp" ? "tel" : undefined}
             placeholder={urlPlaceholder}
             className="w-full bg-transparent px-4 py-3.5 text-base sm:text-lg text-white outline-none placeholder:text-zinc-500 sm:flex-1 rounded-xl focus-visible:ring-2 focus-visible:ring-blue-500"
             required
@@ -313,6 +342,35 @@ export default function ShortenerWidget({
             {isSubmitting ? "Processing..." : ctaButtonText}
           </button>
         </div>
+
+        {/* WhatsApp Message Builder Field */}
+        {mode === "whatsapp" && (
+          <div className="mt-3 border-t border-zinc-800/70 pt-3 px-2 text-left space-y-2">
+            <div>
+              <label
+                htmlFor={waMessageId}
+                className="block text-xs font-medium text-zinc-400 mb-1"
+              >
+                Pre-Filled Greeting Message (optional)
+              </label>
+              <input
+                id={waMessageId}
+                name="wa_message"
+                type="text"
+                placeholder="Hi! I saw your link and would like to ask about..."
+                value={waMessage}
+                onChange={(e) => setWaMessage(e.target.value)}
+                className="w-full rounded-lg bg-zinc-900/90 border border-zinc-800 px-3 py-2 text-sm text-white outline-none focus-visible:border-blue-500"
+              />
+            </div>
+            {previewUtmUrl && (
+              <div className="rounded-lg bg-zinc-950/80 border border-zinc-800/80 px-3 py-2 text-xs text-zinc-400 break-all">
+                <span className="text-emerald-400 font-medium mr-1">Generated wa.me URL:</span>
+                {previewUtmUrl}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* UTM Builder Extra Fields */}
         {mode === "utm" && (

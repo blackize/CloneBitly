@@ -1,4 +1,4 @@
-export type ToolMode = "default" | "qr" | "utm" | "tracker" | "custom";
+export type ToolMode = "default" | "qr" | "utm" | "tracker" | "custom" | "whatsapp";
 
 export interface SeoStep {
   title: string;
@@ -1025,6 +1025,872 @@ export const SEO_TOOLS: SeoToolConfig[] = [
         question: "Where are my links saved if I don't log in?",
         answer:
           "Your links are permanently saved in our database for redirects, and your personal list of recently created links is automatically saved in your browser's local storage (`My Recent Links`) for easy access.",
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-link-generator",
+    navTitle: "WhatsApp Link Generator",
+    badge: "Click-to-Chat + QR & Analytics",
+    h1Main: "WhatsApp Link",
+    h1Accent: "Generator & QR.",
+    subtitle:
+      "Create a custom WhatsApp click-to-chat link with a pre-filled message, shorten it into a branded URL, and track every customer tap.",
+    metaTitle: "Free WhatsApp Link Generator (wa.me) with Pre-Filled Message & QR | Shortnow",
+    metaDescription:
+      "Generate a free WhatsApp click-to-chat link with a custom pre-filled message, branded short URL (shortnow.site/chat), and printable QR code.",
+    keywords: [
+      "whatsapp link generator",
+      "create whatsapp link",
+      "wa.me link generator",
+      "whatsapp qr code generator",
+      "whatsapp link shortener",
+    ],
+    mode: "whatsapp",
+    urlPlaceholder: "+1 555 234 5678 (or paste an existing wa.me link)",
+    aliasPlaceholder: "chat-with-us",
+    ctaButtonText: "Create WhatsApp Link & QR",
+    overviewTitle: "Let Customers Message You on WhatsApp in One Tap",
+    overviewParagraphs: [
+      "Asking leads to manually save your phone number in their address book before they can message you on WhatsApp causes up to 60% drop-off on mobile landing pages and Instagram profiles.",
+      "Our WhatsApp Link Generator builds an official `wa.me` click-to-chat URL with your pre-written greeting message, wraps it inside a clean custom alias like `shortnow.site/order-chat`, and gives you a downloadable QR code plus a real-time counter of how many customers initiated a chat.",
+    ],
+    howItWorksTitle: "How to Create a Trackable WhatsApp Link in 3 Steps",
+    steps: [
+      {
+        title: "1. Enter Your WhatsApp Phone Number",
+        description:
+          "Type your phone number including the country code (for example, +380..., +48..., or +1...). Our tool strips spaces and symbols automatically.",
+      },
+      {
+        title: "2. Add a Pre-Filled Greeting Message",
+        description:
+          "Write a default message like 'Hi! I want to ask about your services' so customers can hit send immediately when WhatsApp opens.",
+      },
+      {
+        title: "3. Share Short URL or Print QR Code",
+        description:
+          "Use your clean `shortnow.site/your-brand` link in Instagram bios, websites, or table tents and track every click in real time.",
+      },
+    ],
+    deepDiveTitle: "Why Shorten Your wa.me Link with Shortnow?",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Hide Your Raw Phone Number & Long Text Strings",
+        points: [
+          {
+            label: "Exposed Numbers & Ugly %20 Encoding",
+            text: "Standard links like `https://wa.me/15551234567?text=Hello%20I%20need%20help` expose your raw number to scrapers and look messy in bios.",
+          },
+          {
+            label: "Clean Branded Alias",
+            text: "Replace the entire string with `shortnow.site/vip-support` for a polished storefront look.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Track How Many Leads Open WhatsApp",
+        points: [
+          {
+            label: "Zero Analytics on Standard wa.me",
+            text: "Default WhatsApp links never tell you how many people clicked your link but didn't send the first message.",
+          },
+          {
+            label: "Live Click & QR Scan Counter",
+            text: "Measure exact click-to-chat volume via `/stats/[slug]`.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How should I format my phone number for the WhatsApp link generator?",
+        answer:
+          "Include your country calling code (e.g., +1 for US/Canada, +44 for UK, +380 for Ukraine, +48 for Poland). You can include spaces or dashes—our generator cleans them automatically.",
+      },
+      {
+        question: "Does this work with both personal WhatsApp and WhatsApp Business?",
+        answer:
+          "Yes! The generated click-to-chat link works seamlessly with both standard WhatsApp and the WhatsApp Business app on iOS, Android, and WhatsApp Web.",
+      },
+      {
+        question: "Can I print the QR code on packaging or store windows?",
+        answer:
+          "Yes, scanning the generated QR code with any smartphone camera immediately opens a WhatsApp chat with your pre-filled message.",
+      },
+    ],
+  },
+  {
+    slug: "telegram-link-shortener",
+    navTitle: "Telegram Link Shortener",
+    badge: "Channels, Bots & Deep Links",
+    h1Main: "Telegram Link",
+    h1Accent: "Shortener & Tracker.",
+    subtitle:
+      "Shorten private Telegram invite links (`t.me/+...`), bot referral URLs (`?start=...`), and post links into clean trackable URLs.",
+    metaTitle: "Free Telegram Link Shortener for Channels, Groups & Bots | Shortnow",
+    metaDescription:
+      "Shorten private Telegram channel invites (t.me/+hash) and bot referral links into custom branded URLs with click tracking and QR codes.",
+    keywords: [
+      "telegram link shortener",
+      "shorten t.me link",
+      "custom telegram invite link",
+      "track telegram bot referral clicks",
+    ],
+    mode: "custom",
+    urlPlaceholder: "https://t.me/+AbCdEfGhIjKlMnOp or https://t.me/your_bot?start=ref1",
+    aliasPlaceholder: "join-tg-channel",
+    ctaButtonText: "Shorten Telegram Link",
+    overviewTitle: "Upgrade Cryptic Private Telegram Links & Bot Referrals",
+    overviewParagraphs: [
+      "Private Telegram channels and groups use random invite hashes (`https://t.me/+X9kLm2PqR7vW`), while Telegram Mini Apps and bots rely on exposed referral parameters (`?start=campaign_42`) that users often delete.",
+      "Shortnow lets you wrap any `t.me` invite, message link, or bot start link inside a clean custom alias (`shortnow.site/crypto-news`, `shortnow.site/start-bot`) with independent click tracking and a QR code.",
+    ],
+    howItWorksTitle: "How to Shorten & Track Telegram Links",
+    steps: [
+      {
+        title: "1. Copy Your t.me Link",
+        description:
+          "Copy your public channel URL, private invite link (`t.me/+...`), specific post URL, or bot deep link.",
+      },
+      {
+        title: "2. Set a Memorable Custom Alias",
+        description:
+          "Choose a readable slug so subscribers know exactly what community or bot they are opening.",
+      },
+      {
+        title: "3. Measure Ad & Cross-Promo Traffic",
+        description:
+          "Create unique slugs for each ad placement and compare real click counts against Telegram subscriber joins.",
+      },
+    ],
+    deepDiveTitle: "Built for Telegram Channel Admins & Mini App Developers",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Conceal Bot Referral Parameters",
+        points: [
+          {
+            label: "Visible ?start= Strings",
+            text: "Savvy users frequently strip `?start=ref_id` from Telegram bot links before clicking.",
+          },
+          {
+            label: "Protected Redirect",
+            text: "A Shortnow alias hides the query parameter until the Telegram app is launched.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Audit Paid Promo Placements",
+        points: [
+          {
+            label: "Verify Ad Views vs Clicks",
+            text: "When buying shoutouts in other Telegram channels, track exact clicks independently via `/stats/slug`.",
+          },
+          {
+            label: "Instant QR for Offline Events",
+            text: "Let conference attendees join your Telegram group with a quick QR scan.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does Shortnow work with private Telegram invite links (`t.me/+...`)?",
+        answer:
+          "Yes, private invite links containing `+` or `joinchat/` redirect smoothly to the Telegram app on mobile and desktop.",
+      },
+      {
+        question: "Are bot `?start=` parameters preserved during redirect?",
+        answer:
+          "Yes, all query parameters for Telegram bots and Mini Apps (`?start=` and `?startapp=`) are forwarded intact.",
+      },
+    ],
+  },
+  {
+    slug: "tiktok-link-shortener",
+    navTitle: "TikTok Link Shortener",
+    badge: "Creator Bio & Video Links",
+    h1Main: "TikTok Bio & Video",
+    h1Accent: "Link Shortener.",
+    subtitle:
+      "Create clean custom bio links and shorten long TikTok video or TikTok Shop URLs with real-time click analytics.",
+    metaTitle: "Free TikTok Link Shortener for Bio & Video URLs | Shortnow",
+    metaDescription:
+      "Shorten links for your TikTok bio or compress long TikTok video and Shop URLs into custom trackable links (`shortnow.site/my-drop`).",
+    keywords: [
+      "tiktok link shortener",
+      "shorten link for tiktok bio",
+      "tiktok shop url shortener",
+      "track tiktok bio clicks",
+    ],
+    mode: "custom",
+    urlPlaceholder: "Paste your bio destination or TikTok video URL...",
+    aliasPlaceholder: "viral-find",
+    ctaButtonText: "Shorten TikTok Link",
+    overviewTitle: "Convert TikTok Views Into Measurable Bio Clicks",
+    overviewParagraphs: [
+      "When a TikTok video goes viral, thousands of viewers tap your profile for 3 seconds. If your bio link is a cut-off URL with random parameters, viewers bounce without clicking.",
+      "Shortnow gives creators, affiliates, and brands a crisp custom URL (`shortnow.site/get-template`, `shortnow.site/shop-deal`) that loads in under 15ms inside TikTok's in-app browser and counts every click live.",
+    ],
+    howItWorksTitle: "How to Use Shortnow for TikTok Growth",
+    steps: [
+      {
+        title: "1. Paste Your Offer or Store Link",
+        description:
+          "Enter your product page, affiliate link, Linktree alternative, or TikTok video URL.",
+      },
+      {
+        title: "2. Pick a Short Call-to-Action Alias",
+        description:
+          "Mention the exact link on screen in your video (e.g., 'Go to shortnow.site/presets').",
+      },
+      {
+        title: "3. Watch Real-Time Clicks Roll In",
+        description:
+          "Open `/stats/slug` to see how many viewers actually tapped through from your viral clip.",
+      },
+    ],
+    deepDiveTitle: "Why Even Accounts Without 1,000 Followers Use Shortnow",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Verbal & Text-On-Screen Links",
+        points: [
+          {
+            label: "The 1,000 Follower Bio Rule",
+            text: "TikTok often restricts clickable bio links until an account reaches 1,000 followers or business verification.",
+          },
+          {
+            label: "Typeable Short URLs in Captions",
+            text: "Put a super-short custom link (`shortnow.site/deal7`) in your pinned comment or video text overlay so viewers can type it effortlessly.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Zero Interstitial Delay",
+        points: [
+          {
+            label: "Fast In-App WebView",
+            text: "Direct HTTP redirects ensure your landing page opens immediately inside TikTok.",
+          },
+          {
+            label: "Free QR Code for Live Streams",
+            text: "Display your generated QR code on screen during TikTok LIVE sessions.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I use Shortnow links in my TikTok bio?",
+        answer:
+          "Yes! Shortnow uses clean HTTPS redirects with no intermediate ad pages, making it safe for TikTok profiles.",
+      },
+      {
+        question: "Can I also shorten long TikTok video sharing links?",
+        answer:
+          "Yes, paste any `tiktok.com/@user/video/...` link to turn it into a clean short URL for cross-posting on X, Instagram, or WhatsApp.",
+      },
+    ],
+  },
+  {
+    slug: "linkedin-url-shortener",
+    navTitle: "LinkedIn URL Shortener",
+    badge: "B2B Content & Personal Branding",
+    h1Main: "LinkedIn URL",
+    h1Accent: "Shortener.",
+    subtitle:
+      "Turn long LinkedIn profile URLs, company posts, and outbound article links into clean custom links with click tracking.",
+    metaTitle: "Free LinkedIn URL Shortener for Posts, Profiles & Resumes | Shortnow",
+    metaDescription:
+      "Shorten LinkedIn profile links for resumes and create clean, trackable outbound links for LinkedIn posts and newsletters.",
+    keywords: [
+      "linkedin url shortener",
+      "shorten link for linkedin post",
+      "custom link for linkedin profile resume",
+      "track linkedin post link clicks",
+    ],
+    mode: "custom",
+    urlPlaceholder: "Paste your article, lead magnet, or LinkedIn profile URL...",
+    aliasPlaceholder: "b2b-report",
+    ctaButtonText: "Shorten LinkedIn Link",
+    overviewTitle: "Professional Short Links for LinkedIn Posts, DMs & Resumes",
+    overviewParagraphs: [
+      "Sharing raw URLs with long query strings inside LinkedIn posts, first-comment links, or cold outreach messages looks unpolished—and LinkedIn's native `lnkd.in` wrapper doesn't let you see click counts or customize the slug.",
+      "With Shortnow, founders, recruiters, and B2B marketers can create readable custom links (`shortnow.site/q3-report`, `shortnow.site/hire-alex`) with a matching QR code for conference badges and pitch decks.",
+    ],
+    howItWorksTitle: "How to Create Branded Links for LinkedIn",
+    steps: [
+      {
+        title: "1. Paste Your Article, Case Study, or Profile URL",
+        description:
+          "Works with any external blog post, webinar registration page, or your own `linkedin.com/in/...` profile.",
+      },
+      {
+        title: "2. Choose an Executive Custom Slug",
+        description:
+          "Pick a clean alias like `shortnow.site/saas-playbook` for your post or 'link in first comment'.",
+      },
+      {
+        title: "3. Measure True Outbound Engagement",
+        description:
+          "LinkedIn impressions don't equal website visits—check `/stats/slug` to see real outbound clicks.",
+      },
+    ],
+    deepDiveTitle: "High-Impact Use Cases for Professionals",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. 'Link in First Comment' Tracking",
+        points: [
+          {
+            label: "Algorithm-Friendly Sharing",
+            text: "Many B2B creators place outbound links in the first comment to maximize post reach.",
+          },
+          {
+            label: "Dedicated Click Counter",
+            text: "Since LinkedIn doesn't report clicks on comment links, Shortnow gives you exact click telemetry.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Resumes, CVs & Conference Badges",
+        points: [
+          {
+            label: "Know When Recruiters Click Your Resume",
+            text: "Put `shortnow.site/cv-yourname` on your PDF resume and see whenever a hiring manager clicks through to your portfolio.",
+          },
+          {
+            label: "Networking QR Code",
+            text: "Save the generated QR code to your phone lock screen for instant LinkedIn connections at events.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Why use Shortnow instead of LinkedIn's automatic lnkd.in shortener?",
+        answer:
+          "LinkedIn's `lnkd.in` generates a random hash, only works inside post bodies (not in comments, DMs, or PDFs), and does not give you a public click counter or QR code.",
+      },
+      {
+        question: "Does Shortnow preserve OpenGraph preview cards on LinkedIn?",
+        answer:
+          "Yes! LinkedIn's crawler follows Shortnow's HTTP redirect directly to your destination article and renders the target page's title and thumbnail image.",
+      },
+    ],
+  },
+  {
+    slug: "notion-link-shortener",
+    navTitle: "Notion Link Shortener",
+    badge: "Templates, Docs & Portfolios",
+    h1Main: "Notion Link",
+    h1Accent: "Shortener.",
+    subtitle:
+      "Replace 60-character Notion page hashes (`notion.site/Page-Title-3f8a9b...`) with a clean, memorable custom short link.",
+    metaTitle: "Free Notion Link Shortener for Public Pages & Templates | Shortnow",
+    metaDescription:
+      "Shorten long Notion public page and template links (`notion.site/...`) into clean custom URLs (`shortnow.site/my-wiki`) with click tracking.",
+    keywords: [
+      "notion link shortener",
+      "shorten notion url",
+      "custom url for notion page free",
+      "track notion template clicks",
+    ],
+    mode: "custom",
+    urlPlaceholder: "https://yourname.notion.site/Workspace-3f9a8c7b6d5e...",
+    aliasPlaceholder: "product-wiki",
+    ctaButtonText: "Shorten Notion Link",
+    overviewTitle: "Give Your Public Notion Pages a Clean URL",
+    overviewParagraphs: [
+      "Notion is one of the best ways to publish templates, job boards, startup wikis, and client portals—but every shared Notion link ends with a 32-character hexadecimal ID (`https://notion.site/My-Resume-1a2b3c4d5e6f7g8h9i0j`).",
+      "Shortnow lets you give any public Notion page a crisp custom alias like `shortnow.site/habit-tracker` or `shortnow.site/press-kit` for free, plus tracks how many visitors open your workspace.",
+    ],
+    howItWorksTitle: "How to Shorten a Notion Page Link",
+    steps: [
+      {
+        title: "1. Publish Your Notion Page to the Web",
+        description:
+          "In Notion, click 'Share' → 'Publish' and copy your public `notion.site` link.",
+      },
+      {
+        title: "2. Pick a Clean Custom Alias",
+        description:
+          "Paste the Notion URL above and enter a short slug without random hex IDs.",
+      },
+      {
+        title: "3. Share & Track Template Views",
+        description:
+          "Since free Notion pages don't include visitor analytics, use `/stats/slug` to see how many people opened your page!",
+      },
+    ],
+    deepDiveTitle: "Free Analytics for Notion Creators & Teams",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Visitor Counter for Free Notion Plans",
+        points: [
+          {
+            label: "Built-in Notion Analytics Require Plus/Business",
+            text: "Standard Notion workspaces limit page view analytics.",
+          },
+          {
+            label: "Instant Click Tracking",
+            text: "Every visit through your Shortnow link is counted automatically.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Clean Links for Gumroad & Template Creators",
+        points: [
+          {
+            label: "Preview Links That Convert",
+            text: "Share clean demo links (`shortnow.site/crm-demo`) on X and Product Hunt.",
+          },
+          {
+            label: "QR Code for Event Schedules",
+            text: "Print a QR code that opens your live Notion conference schedule.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does Shortnow embed my Notion page or redirect to it?",
+        answer:
+          "Shortnow performs an instant <15ms redirect directly to your official `notion.site` page so all Notion interactive toggles, databases, and dark mode work natively.",
+      },
+      {
+        question: "Can I track how many people opened my Notion resume or portfolio?",
+        answer:
+          "Yes! Create a custom link like `shortnow.site/john-portfolio` and check `shortnow.site/john-portfolio+` anytime to see total opens.",
+      },
+    ],
+  },
+  {
+    slug: "canva-link-shortener",
+    navTitle: "Canva Link Shortener",
+    badge: "Presentations & Design Sharing",
+    h1Main: "Canva Link",
+    h1Accent: "Shortener & QR.",
+    subtitle:
+      "Turn long Canva public view links and template sharing URLs (`canva.com/design/DAG...`) into clean, branded short links.",
+    metaTitle: "Free Canva Link Shortener for Presentations & Templates | Shortnow",
+    metaDescription:
+      "Shorten long Canva view-only presentation, portfolio, and template URLs into clean custom links (`shortnow.site/our-deck`) with QR codes.",
+    keywords: [
+      "canva link shortener",
+      "shorten canva view link",
+      "custom url for canva website",
+      "canva presentation qr code",
+    ],
+    mode: "custom",
+    urlPlaceholder: "https://www.canva.com/design/DAG.../view",
+    aliasPlaceholder: "brand-guidelines",
+    ctaButtonText: "Shorten Canva Link",
+    overviewTitle: "Share Canva Decks & Templates Without Ugly URLs",
+    overviewParagraphs: [
+      "Canva's public 'View-only link' and 'Template link' features generate long URLs packed with design tokens (`https://www.canva.com/design/DAGx9Kp2/8fLm3n/view?utm_content=...`) that look messy in client emails.",
+      "With Shortnow, designers, teachers, and marketers can wrap any Canva presentation, website, or template inside a clean alias like `shortnow.site/media-kit` and track how many times it gets opened.",
+    ],
+    howItWorksTitle: "How to Shorten a Canva Design Link",
+    steps: [
+      {
+        title: "1. Copy Your Canva Public View or Template Link",
+        description:
+          "In Canva, click 'Share' → 'Public view link' (or 'Template link') and copy the URL.",
+      },
+      {
+        title: "2. Choose a Memorable Custom Slug",
+        description:
+          "Paste the long Canva URL above and enter a short, descriptive alias.",
+      },
+      {
+        title: "3. Send to Clients or Print the QR Code",
+        description:
+          "Share your clean link and check `/stats/slug` to confirm when your client viewed the deck.",
+      },
+    ],
+    deepDiveTitle: "Why Designers Pair Canva with Shortnow",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Strip Canva's Default Referral Noise",
+        points: [
+          {
+            label: "Default Canva Share Strings",
+            text: "Copied Canva links automatically append `?utm_content=DAG...&utm_campaign=designshare`.",
+          },
+          {
+            label: "Professional Presentation",
+            text: "Your client only sees `shortnow.site/studio-deck` in your email signature or proposal.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Track Digital Menu & Event Poster Scans",
+        points: [
+          {
+            label: "Hosted on Canva, Tracked on Shortnow",
+            text: "Design your wedding invite or cafe menu in Canva, then use Shortnow's QR code to track scans.",
+          },
+          {
+            label: "Instant Updates",
+            text: "Edit your Canva design anytime—your Shortnow link and QR code stay identical.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "If I update my design inside Canva, do I need a new Shortnow link?",
+        answer:
+          "No! Because Canva's public view URL updates automatically when you edit slides, your existing Shortnow link and QR code will always show the latest version.",
+      },
+      {
+        question: "Does this work for Canva Template links sold on Etsy or Gumroad?",
+        answer:
+          "Yes, it works with both Canva view-only links, Canva websites, and Canva template links.",
+      },
+    ],
+  },
+  {
+    slug: "google-forms-link-shortener",
+    navTitle: "Google Forms Shortener",
+    badge: "Surveys, RSVPs & Classroom",
+    h1Main: "Google Forms",
+    h1Accent: "Shortener & QR.",
+    subtitle:
+      "Turn Google Forms survey URLs (`docs.google.com/forms/...` or random `forms.gle` hashes) into custom readable links and QR codes.",
+    metaTitle: "Free Google Forms Link Shortener & Survey QR Code Maker | Shortnow",
+    metaDescription:
+      "Create a custom readable short link (`shortnow.site/event-rsvp`) and printable QR code for any Google Form survey or quiz.",
+    keywords: [
+      "google forms link shortener",
+      "custom url for google form",
+      "google form qr code generator",
+      "shorten google survey link",
+    ],
+    mode: "qr",
+    urlPlaceholder: "https://docs.google.com/forms/d/e/1FAIpQL.../viewform",
+    aliasPlaceholder: "feedback-survey",
+    ctaButtonText: "Shorten Form & Get QR",
+    overviewTitle: "Get More Survey Responses with Custom Links & QR Codes",
+    overviewParagraphs: [
+      "While Google Forms includes a basic `forms.gle` shortener, it produces a random 17-character case-sensitive hash (`forms.gle/9xKpLm2Qr8TvW4YzA`) that nobody can type from a presentation screen, and it doesn't generate a QR code or track how many people clicked vs submitted.",
+      "Shortnow gives your Google Form a human-readable alias (`shortnow.site/attendee-quiz`, `shortnow.site/rsvp-2026`), generates an instant QR code for slides and posters, and counts every form open.",
+    ],
+    howItWorksTitle: "How to Create a Custom Google Form Link & QR Code",
+    steps: [
+      {
+        title: "1. Copy Your Google Form 'Send' Link",
+        description:
+          "In Google Forms, click 'Send', switch to the Link tab, and copy the full `docs.google.com/forms/...` URL.",
+      },
+      {
+        title: "2. Enter a Memorable Survey Slug",
+        description:
+          "Paste the full form URL above and type a clear custom alias like `class-quiz`.",
+      },
+      {
+        title: "3. Project the QR Code & Track Opens",
+        description:
+          "Download the QR code for your slide deck and compare total form opens (`/stats/slug`) with completed responses.",
+      },
+    ],
+    deepDiveTitle: "Measure Form Drop-Off Rate (Clicks vs Submissions)",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Discover Your Survey Completion Rate",
+        points: [
+          {
+            label: "Google Forms Only Counts Final Submits",
+            text: "Google Forms never tells you if 200 people opened your survey and 180 abandoned it halfway.",
+          },
+          {
+            label: "Compare Opens to Submits",
+            text: "Use Shortnow's click counter to see total form opens and calculate your exact completion rate.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Note on forms.gle vs Full Form URLs",
+        points: [
+          {
+            label: "Use the Full docs.google.com URL",
+            text: "Copy the full `https://docs.google.com/forms/...` address rather than a pre-shortened link for the fastest direct redirect.",
+          },
+          {
+            label: "Pre-Filled Form Links Supported",
+            text: "Works seamlessly with Google Forms pre-filled parameter URLs (`?usp=pp_url&entry.123=...`).",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Why is a custom Shortnow link better than forms.gle?",
+        answer:
+          "`forms.gle` creates a random string of uppercase and lowercase letters that is hard to type from a screen, whereas Shortnow lets you pick a custom word slug (`shortnow.site/rsvp`) and automatically creates a QR code + click counter.",
+      },
+      {
+        question: "Does it work with pre-filled Google Form links?",
+        answer:
+          "Yes! Pre-filled Google Form URLs are often 300+ characters long—Shortnow compresses them into a clean short link while keeping all pre-filled answers intact.",
+      },
+    ],
+  },
+  {
+    slug: "shopify-link-shortener",
+    navTitle: "Shopify Link Shortener",
+    badge: "E-Commerce & Social Selling",
+    h1Main: "Shopify & Store",
+    h1Accent: "Link Shortener.",
+    subtitle:
+      "Shorten Shopify product collection URLs, discount auto-apply links, and UTM campaign URLs into high-converting branded links.",
+    metaTitle: "Free Shopify Link Shortener & Discount URL Maker | Shortnow",
+    metaDescription:
+      "Shorten Shopify product, collection, and auto-discount URLs with UTM tags into clean trackable links and QR codes.",
+    keywords: [
+      "shopify link shortener",
+      "shorten shopify product url",
+      "shopify discount link shortener",
+      "ecommerce utm link shortener",
+    ],
+    mode: "utm",
+    urlPlaceholder: "https://yourstore.com/products/item or /discount/VIP20",
+    aliasPlaceholder: "vip-20-off",
+    ctaButtonText: "Shorten Store Link",
+    overviewTitle: "Higher Conversion Rates for E-Commerce & SMS Campaigns",
+    overviewParagraphs: [
+      "Shopify collection URLs, cart permalinks (`/cart/419283:1`), and automatic discount links (`/discount/WELCOME15?redirect=/collections/new`) are powerful sales drivers—but when combined with UTM tags, they become too long for SMS marketing and social bios.",
+      "Shortnow lets e-commerce brands append UTM attribution tags and compress the entire checkout or product URL into a clean slug like `shortnow.site/flash-sale`.",
+    ],
+    howItWorksTitle: "How to Shorten Shopify Product & Discount Links",
+    steps: [
+      {
+        title: "1. Paste Your Product, Collection, or Discount Link",
+        description:
+          "Enter your store URL and optionally fill in `utm_source`, `utm_medium`, and `utm_campaign` right inside the widget.",
+      },
+      {
+        title: "2. Choose a Promo Alias",
+        description:
+          "Create a high-converting slug such as `shortnow.site/bundle-deal`.",
+      },
+      {
+        title: "3. Deploy Across SMS, Influencer & Print Inserts",
+        description:
+          "Save character count in SMS blasts and track influencer click performance in real time.",
+      },
+    ],
+    deepDiveTitle: "Built for D2C Brands & Influencer Seeding",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Track Individual Influencer Links",
+        points: [
+          {
+            label: "Dedicated Slug per Creator",
+            text: "Generate `shortnow.site/emma-glow` and `shortnow.site/lucas-glow` in seconds.",
+          },
+          {
+            label: "Instant Click Leaderboard",
+            text: "Compare how many clicks each creator drove before checking checkout conversions.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Shopify Cart Permalinks & Packaging QR",
+        points: [
+          {
+            label: "1-Click Reorder QR Codes",
+            text: "Encode a pre-loaded Shopify cart permalink into a Shortnow QR code and print it on your product bottle for instant reorders.",
+          },
+          {
+            label: "Sub-15ms Redirects",
+            text: "Zero redirect lag so mobile shoppers never abandon checkout.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do Shopify auto-discount links (`/discount/CODE?redirect=...`) work when shortened?",
+        answer:
+          "Yes! Shortnow forwards the shopper to the exact Shopify discount URL so the promo code is automatically applied to their cart.",
+      },
+      {
+        question: "Can I add UTM parameters for Google Analytics and Shopify Analytics?",
+        answer:
+          "Yes, our built-in UTM fields on this page automatically attach `utm_source`, `utm_medium`, and `utm_campaign` before shortening.",
+      },
+    ],
+  },
+  {
+    slug: "podcast-link-shortener",
+    navTitle: "Podcast Link Shortener",
+    badge: "Audio Creators & Show Notes",
+    h1Main: "Podcast Link",
+    h1Accent: "Shortener.",
+    subtitle:
+      "Create easy-to-say, memorable short links (`shortnow.site/ep42`) that listeners can actually remember and type while driving or working out.",
+    metaTitle: "Free Podcast Link Shortener for Show Notes & Sponsors | Shortnow",
+    metaDescription:
+      "Create spoken-word friendly custom short links (`shortnow.site/ep12`) for podcast episodes, sponsor offers, and Spotify/Apple links.",
+    keywords: [
+      "podcast link shortener",
+      "spoken url shortener for podcasts",
+      "custom short links for podcast show notes",
+      "track podcast sponsor clicks",
+    ],
+    mode: "custom",
+    urlPlaceholder: "Paste Spotify, Apple Podcasts, or sponsor landing page URL...",
+    aliasPlaceholder: "episode-42",
+    ctaButtonText: "Create Spoken Short Link",
+    overviewTitle: "Links Your Listeners Can Actually Remember Out Loud",
+    overviewParagraphs: [
+      "Podcast listeners are usually driving, walking, or at the gym—they cannot click a link inside an audio stream. If you read out a complicated URL or a random hash on air, 99% of listeners will forget it before they unlock their phone.",
+      "Shortnow lets hosts create crystal-clear verbal slugs (`shortnow.site/ep50`, `shortnow.site/book-list`, `shortnow.site/sponsor-name`) and prove exact click counts to podcast sponsors.",
+    ],
+    howItWorksTitle: "How Podcasters Use Shortnow",
+    steps: [
+      {
+        title: "1. Paste Episode, Lead Magnet, or Sponsor URL",
+        description:
+          "Enter your Apple Podcasts link, Spotify episode URL, newsletter signup, or sponsor offer.",
+      },
+      {
+        title: "2. Pick a Spoken-Word Friendly Alias",
+        description:
+          "Use simple dictionary words or episode numbers (`shortnow.site/ep104`) that require zero spelling explanation on air.",
+      },
+      {
+        title: "3. Share Verified Click Stats With Sponsors",
+        description:
+          "Send sponsors the public `/stats/[slug]` link as transparent proof of listener engagement.",
+      },
+    ],
+    deepDiveTitle: "Why Audio Creators Need Custom Slugs",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. The 'Radio Test' for URLs",
+        points: [
+          {
+            label: "Random Hashes Fail Audio",
+            text: "You can never say 'Go to bit-dot-ly slash capital-K-seven-lowercase-q' on a microphone.",
+          },
+          {
+            label: "Clean Memorable Slugs",
+            text: "Saying 'Go to shortnow.site/guide' takes two seconds and sticks in memory.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Sponsor Attribution & QR for Video Podcasts",
+        points: [
+          {
+            label: "Video Podcast Overlays",
+            text: "Display the generated QR code in the corner of your YouTube video podcast episode.",
+          },
+          {
+            label: "Prove Ad Read ROI",
+            text: "Track how many listeners visited a sponsor's offer directly from your host-read ad.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I share the analytics page directly with my podcast sponsor?",
+        answer:
+          "Yes! Every Shortnow link has a clean `/stats/[slug]` page showing total clicks that you can share with sponsors or agencies.",
+      },
+      {
+        question: "Are custom episode slugs free?",
+        answer:
+          "Yes, you can create custom slugs for every episode (`ep1`, `ep2`, `ep3`) completely free.",
+      },
+    ],
+  },
+  {
+    slug: "tinyurl-alternative",
+    navTitle: "TinyURL Alternative",
+    badge: "Modern UI + Live Click Stats",
+    h1Main: "The Modern",
+    h1Accent: "TinyURL Alternative.",
+    subtitle:
+      "All the no-login simplicity of TinyURL, upgraded with free real-time click analytics, dynamic QR codes, and a sleek ad-free dark interface.",
+    metaTitle: "Best Free TinyURL Alternative with Click Analytics & QR | Shortnow",
+    metaDescription:
+      "Looking for a modern TinyURL alternative that includes free click tracking and QR codes without login? Try Shortnow.",
+    keywords: [
+      "tinyurl alternative",
+      "free tinyurl alternative with stats",
+      "url shortener like tinyurl",
+      "ad free url shortener",
+    ],
+    mode: "custom",
+    urlPlaceholder: "Paste any long URL to shorten with live click stats...",
+    aliasPlaceholder: "clean-link",
+    ctaButtonText: "Shorten URL Now",
+    overviewTitle: "Classic Instant Shortening — Now With Free Click Telemetry",
+    overviewParagraphs: [
+      "TinyURL pioneered instant link shortening in 2002, but its free experience today is cluttered with banner ads, pop-up drawers, and paywalled click analytics.",
+      "Shortnow combines the zero-friction speed you love—paste a link, pick an optional alias, and get your short URL in one click—with modern developer-grade features: real-time click counters, instant QR codes, UTM building, and a local browser link history.",
+    ],
+    howItWorksTitle: "Why Upgrade to Shortnow in 3 Steps",
+    steps: [
+      {
+        title: "1. Paste & Customize Instantly",
+        description:
+          "No popups, no captcha walls, and no account required—just paste your URL and pick an optional alias.",
+      },
+      {
+        title: "2. Get Free Click Tracking Included",
+        description:
+          "Every Shortnow link comes with live click counting out of the box—just add '+' to the end of any short link.",
+      },
+      {
+        title: "3. Access Your Links Anytime Locally",
+        description:
+          "Your browser automatically remembers your recent links and refreshes their live click totals.",
+      },
+    ],
+    deepDiveTitle: "Shortnow vs Legacy 2000s URL Shorteners",
+    deepDiveBlocks: [
+      {
+        subtitle: "1. Zero Clutter & Sub-15ms Redis Engine",
+        points: [
+          {
+            label: "Ad-Heavy Legacy Interfaces",
+            text: "Legacy free tools surround the input field with distracting display ads and upsell modals.",
+          },
+          {
+            label: "Focused Minimalist Workspace",
+            text: "Shortnow is engineered for speed, clarity, and instant copy-paste productivity.",
+          },
+        ],
+      },
+      {
+        subtitle: "2. Free Analytics & QR Without Subscriptions",
+        points: [
+          {
+            label: "No Blind Links",
+            text: "Never wonder if someone clicked your link again—check `/stats/[slug]` anytime for free.",
+          },
+          {
+            label: "Built-in Marketing Toolkit",
+            text: "Includes specialized generators for UTM campaigns, QR codes, and WhatsApp click-to-chat.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does Shortnow track clicks for free without an account?",
+        answer:
+          "Yes! Unlike TinyURL's free tier, Shortnow tracks clicks on every shortened link automatically and lets you view them anytime via `/stats/your-slug` or by adding `+` to the short URL.",
+      },
+      {
+        question: "Do links created on Shortnow ever expire?",
+        answer:
+          "No, your shortened links and QR codes remain active permanently.",
       },
     ],
   },

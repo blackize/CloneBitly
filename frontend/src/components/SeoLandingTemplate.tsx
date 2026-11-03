@@ -86,20 +86,20 @@ export default function SeoLandingTemplate({ config }: SeoLandingTemplateProps) 
             <Link href="/tools/qr-code-generator" className="hover:text-white transition-colors">
               QR Generator
             </Link>
+            <Link href="/tools/whatsapp-link-generator" className="hover:text-white transition-colors">
+              WhatsApp Link
+            </Link>
             <Link href="/tools/utm-link-shortener" className="hover:text-white transition-colors">
               UTM Shortener
             </Link>
             <Link href="/tools/link-click-tracker" className="hover:text-white transition-colors">
               Click Tracker
             </Link>
-            <Link href="/tools/custom-url-shortener" className="hover:text-white transition-colors">
-              Custom Links
-            </Link>
             <Link
               href="/tools"
               className="rounded-lg bg-white/5 border border-white/10 px-3 py-1.5 text-xs font-medium text-zinc-200 hover:bg-white/10 transition-colors"
             >
-              All Free Tools →
+              All 20 Tools →
             </Link>
           </nav>
 
